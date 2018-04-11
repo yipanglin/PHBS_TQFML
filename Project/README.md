@@ -14,7 +14,6 @@ The National Basketball Association (NBA) Most Valuable Player Award (MVP) is an
 By voting!
 Since the 1980–81 season, the award is decided by a panel of sportswriters and broadcasters throughout the United States and Canada.
 Each member of the voting panel casts a vote for first to fifth place selections. Each first-place vote is worth 10 points; each second-place vote is worth seven; each third-place vote is worth five, fourth-place is worth three and fifth-place is worth one.
-But I can only find the number of first-place vote and total points won by individual players.
 
 # Voting based on...
 Steve Aschburner: "The MVP is the best player on the team with the best record."
