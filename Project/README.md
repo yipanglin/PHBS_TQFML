@@ -3,7 +3,7 @@
 # Topics
 "What kind of player will be voted as the MVP in NBA this season?"
 
-# Reason
+# Motivation
 1. a big fan of NBA
 2. Basketball players across different positions can be measured using the same set of statistics, but like volleyball is very hard.
 
