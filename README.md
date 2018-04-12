@@ -35,7 +35,7 @@ Data are from basketball-reference.com and Kaggle dataset "NBA Players stats sin
 
 B. Data Choosing
   1. Data from 1980-1981 season to 2016-2017 season, because nowadays voting system was established at 1980-1981 season.
-  2. Use the highest five vote-points candidates vs. other players to classify data.
+  2. Use the highest ten vote-points candidates vs. other players to classify data.
   
 # Features:
 
