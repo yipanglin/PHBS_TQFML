@@ -1,7 +1,7 @@
 # PHBS_TQFML - Final Project
 
 # Topics
-"Who will win the MVP in NBA this season?"
+"Who will be the MVP candidates in NBA this season?"
 
 # Reason
 1. a big fan of NBA
@@ -24,7 +24,7 @@ Ian Thomsen: "I love this award because it’s all about value: who has done the
 We can know that the media vote the MVP based on the contribution of the player to the team, which can be observed from personal statistics and team winning percentage (team standing).
 
 # Project Goal
-To predict the total vote point of each player in 2017-2018 season and can inference that the player with highest predicted vote-point will win the "Most Valuable Player (MVP)" .
+To predict MVP candidates in 2017-2018 season by training model using classfication from MVP candidates and other players .
 
 # Data
 A. What kind of data do I need?
@@ -34,8 +34,9 @@ A. What kind of data do I need?
 Data are from basketball-reference.com and Kaggle dataset "NBA Players stats since 1950", with stats for all players since 1950. 
 
 B. Data Choosing
-  Data from 1980-1981 season to 2016-2017 season, because nowadays voting system was established at 1980-1981 season.
-
+  1. Data from 1980-1981 season to 2016-2017 season, because nowadays voting system was established at 1980-1981 season.
+  2. Use the highest five vote-points candidates vs. other players to classify data.
+  
 # Features:
 
 @Seasons_Stats.csv
@@ -58,7 +59,7 @@ B. Data Choosing
 @nbastandings.csv
 1. Numbers of winning games (W)
 2. Numbers of losing games (L)
-I will combine them to winning rate.
+==> I will combine them to winning rate.
 
 @nbavoting.csv
 1. First-place vote (First) - The numbers of first-place vote.
@@ -66,4 +67,4 @@ I will combine them to winning rate.
 3. Points max (Pts Max) - The max voting points each player can get at that season.
 
 # Methods
-Try KNN/Logistic/SVM/RandomForest/Bagging/AdaBoost to choose a better model to predict the MVP.
+Try KNN/Logistic/SVM/RandomForest/Rogistic method to choose a better model to predict the MVP.
