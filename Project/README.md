@@ -1,7 +1,7 @@
 # PHBS_TQFML - Final Project
 
 # Topics
-"Who will be the MVP candidates in NBA this season?"
+"What kind of player will be voted as the MVP in NBA this season?"
 
 # Reason
 1. a big fan of NBA
