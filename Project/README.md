@@ -27,7 +27,7 @@ We can know that the media vote the MVP based on the contribution of the player 
 To predict MVP candidates or even MVP in 2016-2017 season by training model using classfication from MVP + MVP candidates and other players .
 
 ## Data
-What kind of data do I need?
+What kind of data do we need?
   1. Individual Stats (with Past MVP winners records) (@Seasons_Stats.csv)
   2. Team Stats (@nbastandings.csv)
 -Data are from basketball-reference.com and Kaggle dataset "NBA Players stats since 1950", with stats for all players since 1950. 
@@ -62,9 +62,8 @@ What kind of data do I need?
 
 
 ## Methods
-- 
-- Try DecisionTree/RandomForest/LinearSVC/Synthetic Minority Oversampling Technique (SMOTE)/Bagging method to classify MVP player and normal player.
-- I use different VoteShare to redo the predict of MVP.
+- Try DecisionTree/RandomForest/LinearSVC/Synthetic Minority Oversampling Technique (SMOTE)/Bagging method to classify between MVP player and normal player.
+- use different VoteShare rate as standards to redo the predict of MVP.
 - If the required VoteShare is high enough then the predicted value should be the MVP of that season.
 
 ## Procedure
@@ -73,14 +72,34 @@ What kind of data do I need?
   -Use the highest ten vote-points candidates vs. other players to classify data.
   -Keep only players with more than 2050 minutes for each season (with a 82 games regular season, thats around 25 minutes per game. Players with less than that will be hard to be MVP, and will distort the analysis).
   -Deducted features with too much NaN
+  
 2. Merge both tables together and calculate PPG,APG,3PG,RPG,FTPG,TOPG,MVP
-  -MVP=1 if VoteShare is bigger than the VoteRate you want (I called it MVPrate)  
+  -create MVP feature (MVP=1 if VoteShare is bigger than the required VoteRate as well as MVPrate)
+  
 3. Split the data and Standadized the Features
-  -Train data: 1980~2015 season
-  -Test data: 2016 season
+  -Train data: 1980-1981~2015-2016 season
+  -Test data: 2016-2017 season
+  
 4. Choosing Features
-  -plot the numbers of features-accuracy graph and then we can choose the number 
+  -plot the numbers of features-accuracy graph and then we can choose the number of features we want to use and then use the "Sequential feature selection algorithms" to find out the features really matters under different methods.
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Cor.png)
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Feature%20Importance.png)
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/DecisionTree.png)
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Random%20Forest.png)
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/LinearSVC.png)
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/SMOTE.png)
+  ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Bagging.png)
+  
 5. Applying every method to predict MVP candidate in 2016 season, and we can also change the MVPrate to inflence the prediction outcome of MVP I want.
+
+
+
+## Problem & Solutions
+1. Class Imbalance leads to Accuracy Paradox: It is the case where your accuracy measures tell the story that you have excellent accuracy (such as 90%), but the accuracy is only reflecting the underlying class distribution. In this project, the outcome of nnot being MVP is much much more common than being the MVP, so our models is accurate if it just tells everyone they are not going to be MVP
+==> Trying to increase the MVP class or reduce the non-MVP class and choose the model we use.
+
+2. There are a lot of players who have been classified as MVP.
+==> Increase the MVPrate.
 
 ## Outcome
 
@@ -171,10 +190,4 @@ LeBron James
 Training accuracy: 0.9761967041590374
 Test accuracy: 0.9711538461538461
 
-## Problem
-1. Class Imbalance leads to Accuracy Paradox: It is the case where your accuracy measures tell the story that you have excellent accuracy (such as 90%), but the accuracy is only reflecting the underlying class distribution. In this project, the outcome of nnot being MVP is much much more common than being the MVP, so our models is accurate if it just tells everyone they are not going to be MVP
-2. There are a lot of players who have been classified as MVP.
-
-## Solution
-1. Trying to increase 
-2. Increase the MVPrate.
+I will choose randomforest as my model tp predict MVP in the future.
