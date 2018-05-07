@@ -190,4 +190,5 @@ LeBron James
 Training accuracy: 0.9761967041590374
 Test accuracy: 0.9711538461538461
 
-I will choose randomforest as my model tp predict MVP in the future.
+Still need further test, like ROC curve to know which model is better in predicting MVP.
+I will choose randomforest method as my model to predict MVP in the future.
