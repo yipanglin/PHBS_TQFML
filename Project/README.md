@@ -31,6 +31,7 @@ What kind of data do we need?
   1. Individual Stats (with Past MVP winners records) (@Seasons_Stats.csv)
   2. Team Stats (@nbastandings.csv)
 -Data are from basketball-reference.com and Kaggle dataset "NBA Players stats since 1950", with stats for all players since 1950. 
+[https://www.kaggle.com/drgilermo/nba-players-stats/data]
   
 ## Features:
 
@@ -75,6 +76,7 @@ What kind of data do we need?
   
 2. Merge both tables together and calculate PPG,APG,3PG,RPG,FTPG,TOPG,MVP
   -create MVP feature (MVP=1 if VoteShare is bigger than the required VoteRate as well as MVPrate)
+  -I choose 0.5 MVPrate as my final standard.
   
 3. Split the data and Standadized the Features
   -Train data: 1980-1981~2015-2016 season
@@ -84,10 +86,15 @@ What kind of data do we need?
   -plot the numbers of features-accuracy graph and then we can choose the number of features we want to use and then use the "Sequential feature selection algorithms" to find out the features really matters under different methods.
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Cor.png)
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Feature%20Importance.png)
+  ### DecisionTree
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/DecisionTree.png)
+  ### Random Forest
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Random%20Forest.png)
+  ### LinearSVC
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/LinearSVC.png)
+  ### SMOTE
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/SMOTE.png)
+  ### Bagging
   ![alt text](https://github.com/yipanglin/PHBS_TQFML/raw/master/Project/Bagging.png)
   
 5. Applying every method to predict MVP candidate in 2016 season, and we can also change the MVPrate to inflence the prediction outcome of MVP I want.
@@ -103,92 +110,14 @@ What kind of data do we need?
 
 ## Outcome
 
-### MVPrate=0.1(VoteShare>0.1)(True:Russell Westbrook,Kawhi Leonard,LeBron James,James Harden)
+I will choose LinearSVC Method as my model to predict MVP.
+Although the accuracy rate are very high in all method, there are some biases because of the imbalancing data.
+I faced "accuracy paradox" and the outcome of not being MVP is much much more common than being the MVP, so my models is accurate if it just tells everyone they are not going to be MVP. 
+There are some way to improve my model!
 
--DecisionTree(4/8)
-LeBron James, Russell Westbrook, Jimmy Butler, Damian Lillard, Kawhi Leonard, James Harden, Kevin Durant, Giannis Antetokounmpo
+## Future Improvements
+1. I should not use accuracy-rate as my standard to predict MVP, because the data is so imbalance and I should try out finding minimum false-positive-rate as my standard to predict MVP.
 
--RandomForest(4/7)
-LeBron James, Giannis Antetokounmpo, Anthony Davis, Russell Westbrook, Kawhi Leonard, James Harden, DeMarcus Cousins
+2. Maybe increase the MVP=1-class samples by copying the sample to balance the data or use Prototype generation method to generate new samples in order to balance the dataset and then the accuracy-rate can my standard to predict MVP.
 
--LinearSVC(3/4)
-LeBron James, Kevin Durant, Russell Westbrook, James Harden
-
--SMOTE(3/4)
-LeBron James, Kevin Durant, Russell Westbrook, James Harden
-
--Bagging method(4/8)
-LeBron James, Russell Westbrook, Anthony Davis, Karl-Anthony Towns, Kawhi Leonard, James Harden, Kevin Durant, Giannis Antetokounmpo
-
-### MVPrate=0.2(VoteShare>0.2)(True:Kawhi Leonard, Russell Westbrook)
--DecisionTree(2/7)
-LeBron James, Kawhi Leonard, Kevin Durant, James Harden, Damian Lillard, Jimmy Butler, Russell Westbrook
-
--RandomForest(2/7)
-LeBron James, Russell Westbrook, Jimmy Butler, Kawhi Leonard, James Harden, Kevin Durant, Giannis Antetokounmpo
-
--LinearSVC(0/1)
-James Harden
-
--SMOTE(0/0)
-NaN
-
--Bagging method(2/5)
-LeBron James, Anthony Davis, Kevin Durant, Russell Westbrook, Kawhi Leonard
-
-### MVPrate=0.3(VoteShare>0.3)(True:Kawhi Leonard, Russell Westbrook)
-
--DecisionTree(2/6)
-Kevin Durant, DeMar DeRozan, Stephen Curry, Russell Westbrook, Kawhi Leonard, James Harden
-Training accuracy: 0.970442061208475
-Test accuracy: 0.9615384615384616
-
--RandomForest(2/6)
-LeBron James, Kevin Durant, Giannis Antetokounmpo, Russell Westbrook, Kawhi Leonard, James Harden
-Training accuracy: 0.970442061208475
-Test accuracy: 0.9615384615384616
-
--LinearSVC(1/4)
-LeBron James, Kevin Durant, Russell Westbrook, James Harden
-Training accuracy: 0.7962333246141774
-Test accuracy: 0.9326923076923077
-
--SMOTE(0/0)
-NaN
-Training accuracy: 0.7923097044206121
-Test accuracy: 0.9326923076923077
-
--Bagging method(1/3)
-LeBron James, Russell Westbrook, James Harden
-Training accuracy: 0.970442061208475
-Test accuracy: 0.9615384615384616
-
-### MVPrate=0.4(VoteShare>0.4)(True:Russell Westbrook)
-
--DecisionTree(0/2)
-LeBron James, Kawhi Leonard
-Training accuracy: 0.9761967041590374
-Test accuracy: 0.9711538461538461
-
--RandomForest(0/0)
-NaN
-Training accuracy: 0.9761967041590374
-Test accuracy: 0.9711538461538461
-
--LinearSVC(0/3)
-LeBron James, Kevin Durant, James Harden
-Training accuracy: 0.7588281454355218
-Test accuracy: 0.9326923076923077
-
--SMOTE(0/1)
-James Harden
-Training accuracy: 0.7590897201150929
-Test accuracy: 0.9326923076923077
-
--Bagging method(0/1)
-LeBron James
-Training accuracy: 0.9761967041590374
-Test accuracy: 0.9711538461538461
-
-Still need further test, like ROC curve to know which model is better in predicting MVP.
-I will choose randomforest method as my model to predict MVP in the future.
+3.Try out Naive random over-sampling method, random over-sampling to SMOTE method and random over-sampling to ADASYNADASYN method to have a better prediction. 
